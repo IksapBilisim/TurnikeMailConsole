@@ -21,7 +21,7 @@ namespace TurnikeMailConsole
                 var myDataTable = new DataTable();
                 var startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
                 var justDate = startOfWeek.ToString("yyyy-MM-dd");
-                using (var conection = new OleDbConnection("Provider=Microsoft.JET.OLEDB.4.0;" + "data source=C:\\att2000.mdb;"))
+                using (var conection = new OleDbConnection("Provider=Microsoft.JET.OLEDB.4.0;" + "data source=C:\\Program Files\\ZKTeco\\att2000.mdb;"))
                 {
                     conection.Open();
                    
@@ -66,6 +66,7 @@ namespace TurnikeMailConsole
             }
             catch (Exception ex)
             {
+                File.WriteAllText("log.txt",ex.Message.ToString());
                 throw new Exception(ex.Message);
             }
 

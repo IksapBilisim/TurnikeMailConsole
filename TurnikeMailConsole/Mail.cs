@@ -28,7 +28,8 @@ namespace TurnikeMailConsole
                 sc.Credentials = new NetworkCredential("TURNIKE@iksap.com","Xap1203*");
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("TURNIKE@iksap.com", "TURNIKE");
-                mail.To.Add("arge.destek@iksap.com");
+                mail.To.Add("cihan.abay@iksap.com");
+                mail.To.Add("yonetim@iksap.com");
                 mail.Subject = "TURNIKE HAFTALIK KAYIT";
                 mail.BodyEncoding = System.Text.Encoding.UTF8;
                 mail.IsBodyHtml = true;
@@ -37,6 +38,7 @@ namespace TurnikeMailConsole
             }
             catch(Exception ex)
             {
+                File.WriteAllText("log.txt", ex.Message.ToString());
                 throw new Exception(ex.Message);
             }
         }
