@@ -11,13 +11,14 @@ namespace TurnikeMailConsole
 {
     public class Mail
     {
-        public void SendMail(string content)
+        public void SendMail(string todayList,string aweekList)
         {
             try
             {
 
-                string body = "<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n<title>Untitled Document</title>\r\n</head>\r\n<style>\r\ntable {\r\n  font-family: arial, sans-serif;\r\n  border-collapse: collapse;\r\n  width: 100%;\r\n}\r\n\r\ntd, th {\r\n  border: 1px solid #dddddd;\r\n  text-align: left;\r\n  padding: 8px;\r\n}\r\n\r\ntr:nth-child(even) {\r\n  background-color: #dddddd;\r\n}\r\n</style>\r\n</html>\r\n<body>\r\n\r\n<table>\r\n  <tr>\r\n    <th>Kullanıcı</th>\r\n    <th>Giriş Tarihi</th>\r\n    <th>Çıkış Tarihi</th>\r\n  </tr> {body}\r\n</table>\r\n\r\n</body>\r\n</html>\r\n\r\n";
-                body = body.Replace("{body}", content);
+                string body = "<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n<title>Untitled Document</title>\r\n</head>\r\n<style>\r\ntable {\r\n  font-family: arial, sans-serif;\r\n  border-collapse: collapse;\r\n  width: 100%;\r\n}\r\n\r\ntd, th {\r\n  border: 1px solid #dddddd;\r\n  text-align: left;\r\n  padding: 8px;\r\n}\r\n\r\ntr:nth-child(even) {\r\n  background-color: #dddddd;\r\n}\r\n</style>\r\n</html>\r\n<body>\r\n<h1>BUGUN</h1>\r\n<table>\r\n  <tr>\r\n    <th>Kullanıcı</th>\r\n    <th>Giriş Tarihi</th>\r\n    <th>Çıkış Tarihi</th>\r\n  </tr> {today}\r\n</table>\r\n\r\n\r\n<h1>SON 1 HAFTA</h1>\r\n<table>\r\n  <tr>\r\n    <th>Kullanıcı</th>\r\n    <th>Giriş Tarihi</th>\r\n    <th>Çıkış Tarihi</th>\r\n  </tr> {lastaweek}\r\n</table>\r\n\r\n</body>\r\n</html>\r\n\r\n";
+                body = body.Replace("{today}", todayList);
+                body = body.Replace("{lastaweek}", aweekList);
                 body = body.Replace("þ", "ş");
                 body = body.Replace("ý", "ı");
                 SmtpClient sc = new SmtpClient();
@@ -30,7 +31,7 @@ namespace TurnikeMailConsole
                 mail.From = new MailAddress("TURNIKE@iksap.com", "TURNIKE");
                 mail.To.Add("cihan.abay@iksap.com");
                 mail.To.Add("yonetim@iksap.com");
-                mail.Subject = "TURNIKE HAFTALIK KAYIT";
+                mail.Subject = "TURNIKE Günlük KAYIT - " + DateTime.Now.ToString("yyyy-MM-dd");
                 mail.BodyEncoding = System.Text.Encoding.UTF8;
                 mail.IsBodyHtml = true;
                 mail.Body = body;
