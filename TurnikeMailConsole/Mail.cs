@@ -23,12 +23,12 @@ namespace TurnikeMailConsole
                 body = body.Replace("ý", "ı");
                 SmtpClient sc = new SmtpClient();
                 sc.Port = 587;
-                sc.Host = "mail.iksap.com";
-                sc.EnableSsl = false;
+                sc.Host = "smtp.office365.com";
+                sc.EnableSsl = true;
 
-                sc.Credentials = new NetworkCredential("TURNIKE@iksap.com","Xap1203*");
+                sc.Credentials = new NetworkCredential("no-reply@iksap.com", "eGHHTEJA*2@w6&xy");
                 MailMessage mail = new MailMessage();
-                mail.From = new MailAddress("TURNIKE@iksap.com", "TURNIKE");
+                mail.From = new MailAddress("no-reply@iksap.com", "TURNIKE");
                 mail.To.Add("cihan.abay@iksap.com");
                 mail.To.Add("yonetim@iksap.com");
                 mail.Subject = "TURNIKE Günlük KAYIT - " + DateTime.Now.ToString("yyyy-MM-dd");
